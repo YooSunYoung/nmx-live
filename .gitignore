@@ -1,0 +1,5 @@
+beamlime/
+*.log
+*.png
+.vscode/
+*.DS_Store

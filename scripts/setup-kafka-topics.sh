@@ -8,10 +8,10 @@ fi
 
 BEAMLIME_INSTRUMENT=$1
 
-kafka-topics --bootstrap-server kafka:29092 --delete --topic '.*' || true
-kafka-leader-election --bootstrap-server kafka:29092 --election-type PREFERRED --all-topic-partitions
+kafka-topics --bootstrap-server beamlimekafka:29093 --delete --topic '.*' || true
+kafka-leader-election --bootstrap-server beamlimekafka:29093 --election-type PREFERRED --all-topic-partitions
 
-kafka-topics --create --bootstrap-server kafka:29092 \
+kafka-topics --create --bootstrap-server beamlimekafka:29093 \
   --topic ${BEAMLIME_INSTRUMENT}_detector \
   --config cleanup.policy=delete \
   --config delete.retention.ms=60000 \
@@ -21,7 +21,7 @@ kafka-topics --create --bootstrap-server kafka:29092 \
   --config segment.bytes=104857600 \
   --config segment.ms=60000
 
-kafka-topics --create --bootstrap-server kafka:29092 \
+kafka-topics --create --bootstrap-server beamlimekafka:29093 \
   --topic ${BEAMLIME_INSTRUMENT}_beam_monitor \
   --config cleanup.policy=delete \
   --config delete.retention.ms=60000 \
@@ -31,7 +31,7 @@ kafka-topics --create --bootstrap-server kafka:29092 \
   --config segment.bytes=104857600 \
   --config segment.ms=60000
 
-kafka-topics --create --bootstrap-server kafka:29092 \
+kafka-topics --create --bootstrap-server beamlimekafka:29093 \
   --topic ${BEAMLIME_INSTRUMENT}_beamlime_commands \
   --config cleanup.policy=compact \
   --config retention.ms=-1 \
@@ -41,7 +41,7 @@ kafka-topics --create --bootstrap-server kafka:29092 \
   --config max.message.bytes=1048576 \
   --config retention.bytes=-1
 
-kafka-topics --create --bootstrap-server kafka:29092 \
+kafka-topics --create --bootstrap-server beamlimekafka:29093 \
   --topic ${BEAMLIME_INSTRUMENT}_beamlime_data \
   --config cleanup.policy=delete \
   --config delete.retention.ms=60000 \

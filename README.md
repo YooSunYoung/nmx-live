@@ -4,26 +4,21 @@
 
 ``docker-compose`` - It's probably already installed but if not, go to this [download page](https://docs.docker.com/compose/install/).
 
-``beamlime`` - Beamlime repository should be downloaded.
+
+## How to run
+
+Everything that needs to run `beamlime` are wrapped in these shell scripts, `install.sh` and `run.sh`.
+
+You have to source these since some of steps need `conda`.
+
+### Only once
 ```bash
-git clone https://github.com/scipp/beamlime.git
+source install.sh  # > install.log
 ```
 
-## Environment Variable
-
+### To run/restart the services
 ```bash
-export BEAMLIME_INSTRUMENT="nmx"
-export KAFKA_BOOTSTRAP_SERVERS=""
-export KAFKA_SECURITY_PROTOCOL=""
-export KAFKA_SASL_MECHANISM=""
-export KAFKA_SASL_USERNAME=""
-export KAFKA_SASL_PASSWORD=""
+source run.sh  # > run.log
 ```
 
-## Development
-> This part is only for developers so please ignore if you're not a developer.
-
-```bash
-docker compose -f docker-compose-minimal.yml up
-# Be careful that docker-compose may not work but docker compose works, vice versa.
-```
+**Please check if any python processes are hanging even if you killed them.**
