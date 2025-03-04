@@ -13,7 +13,7 @@ fi
 
 # Change all boot strap server urls
 cd beamlime/src/beamlime/config/defaults/
-sed -i 's/localhost:9092/localhost:9093/g' *
+sed -i 's/localhost:9092/localhost:9093/g' kafka_downstream_dev.yaml
 cd -
 
 echo "Preparation all set up."
